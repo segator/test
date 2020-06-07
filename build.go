@@ -1,6 +1,6 @@
 package main
 
-import "github.com/spf13/cobra/cobra/cmd"
+import "transcoder/builder/cmd"
 
 func main() {
 	cmd.Execute()
