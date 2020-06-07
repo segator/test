@@ -12,9 +12,9 @@ import (
 
 
 func prepareBuildEnv(path string) string {
-	buildPath := filepath.Join("build",path)
+	buildPath := filepath.Join(helper.GetWD(),"build",path)
 	fmt.Printf("Create folder %s\n",buildPath)
-	if err:=os.MkdirAll(buildPath,os.ModeDir);err!=nil {
+	if err:=os.MkdirAll(buildPath,os.ModePerm);err!=nil {
 		panic(err)
 	}
 	return buildPath
@@ -72,7 +72,7 @@ func copyResources(buildPath string, sourcePath string)  error {
 		relative, _ := filepath.Rel(sourcePath, path)
 		buildPathRel := filepath.Join(buildPath, relative)
 		if info.IsDir() {
-			os.Mkdir(buildPathRel, os.ModeDir)
+			os.Mkdir(buildPathRel, os.ModePerm)
 		} else {
 			if _, err := helper.CopyFilePath(path, buildPathRel); err != nil {
 				panic(err)
